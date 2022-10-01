@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+<div class="container text-center">
+    <h1>Welcome <span>{{user.name}}</span></h1>
+    <button class="btn btn-success mt-3" (click)="showContacts()">Show contacts</button><br>
+    <button class="btn btn-warning mt-3" (click)="addContact()">Add contact</button>
+</div>
+<div class="container card mt-3">
+    <h3 class="text-center">Contacts</h3>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of contacts">
+            
+            <td><a routerLink="" (click)="contactDetails(c.cid)" class="badge badge-light"><span style="color: black;">{{c.name}}</span></a></td>
+            <td>{{c.phone}}</td>
+            <td><button class="btn btn-warning btn-sm" (click)="update(c.cid)">Update</button>
+            <button class="btn btn-danger btn-sm ml-2" (click)="delete(c.cid)">Delete</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+
+</div>

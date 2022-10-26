@@ -78,6 +78,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/contacts")
+	@PreAuthorize("hasAnyRole('user','admin')")
 	public List<Contact> showAllContacts(String name)
 	{
 		User user=userRepository.getUserByUserName(name);
@@ -85,6 +86,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/add")
+	@PreAuthorize("hasAnyRole('user','admin')")
 	public Contact addContact(@RequestBody Contact contact,String name)
 	{
 		User user=userRepository.getUserByUserName(name);
@@ -95,6 +97,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/contacts/{cid}")
+	@PreAuthorize("hasAnyRole('user','admin')")
 	public Contact delete(@PathVariable("cid") int cid)
 	{
 		Contact c=contactRepository.findById(cid).get();
@@ -103,6 +106,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/update/{cid}")
+	@PreAuthorize("hasAnyRole('user','admin')")
 	public Contact update(@PathVariable("cid") int cid,@RequestBody Contact c,String name)
 	{
 		User user=userRepository.getUserByUserName(name);
@@ -111,6 +115,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/contacts/{cid}")
+	@PreAuthorize("hasAnyRole('user','admin')")
 	public Contact contactById(@PathVariable("cid") int cid) {
 		return contactRepository.findById(cid).get();
 	}
